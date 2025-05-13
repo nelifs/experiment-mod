@@ -1,9 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "su.foxocorp.experiment.mixin",
+  "package": "su.foxocorp.experiment.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "PlayerListMixin"
   ],
   "injectors": {
     "defaultRequire": 1
