@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "id": "experiment",
+  "version": "${version}",
+  "name": "Experiment",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "GPL-3.0",
+  "icon": "assets/experiment/icon.png",
+  "environment": "server",
+  "entrypoints": {
+    "fabric-datagen": [
+      "su.foxocorp.experiment.client.ExperimentDataGenerator"
+    ],
+    "main": [
+      "su.foxocorp.experiment.Experiment"
+    ]
+  },
+  "mixins": [
+    "experiment.mixins.json",
+    {
+      "config": "experiment.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
