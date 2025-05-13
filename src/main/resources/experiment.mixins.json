@@ -4,7 +4,8 @@
   "package": "su.foxocorp.experiment.mixins",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "PlayerListMixin"
+    "PlayerListMixin",
+    "ListPlayersCommandMixin"
   ],
   "injectors": {
     "defaultRequire": 1
