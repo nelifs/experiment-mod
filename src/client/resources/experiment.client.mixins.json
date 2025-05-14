@@ -4,7 +4,8 @@
   "package": "su.foxocorp.experiment.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
-    "BackgroundRendererMixin"
+    "BackgroundRendererMixin",
+    "PlayerListHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
