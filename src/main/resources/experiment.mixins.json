@@ -4,6 +4,7 @@
   "package": "su.foxocorp.experiment.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "ServerPlayerEntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

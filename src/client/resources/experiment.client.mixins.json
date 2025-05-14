@@ -1,9 +1,10 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "su.foxocorp.experiment.mixin.client",
+  "package": "su.foxocorp.experiment.client.mixin",
   "compatibilityLevel": "JAVA_21",
   "client": [
+    "BackgroundRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1
