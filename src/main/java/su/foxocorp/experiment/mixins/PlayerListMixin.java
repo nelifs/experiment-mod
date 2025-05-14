@@ -28,8 +28,8 @@ public class PlayerListMixin {
 //    private void getPlayerNames(CallbackInfoReturnable<String[]> cir) {
 //        cir.setReturnValue(new String[0]);
 //    }
-    @Inject(method = "<init>*", at = @At("RETURN"))
-    private void onPacketInit(CallbackInfo ci) {
-        this.entries = new ArrayList<>();
-    }
+//    @Inject(method = "<init>*", at = @At("RETURN"))
+//    private void onPacketInit(CallbackInfo ci) {
+//        this.entries = new ArrayList<>();
+//    }
 }
