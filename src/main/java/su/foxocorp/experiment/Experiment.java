@@ -32,6 +32,8 @@ public class Experiment implements ModInitializer {
 
     private static final ActionBar actionBar = new ActionBar();
 
+    private static final ServerEvents serverEvents = new ServerEvents();
+
     public static MinecraftServer minecraftServer;
 
     private final ConcurrentMap<UUID, Boolean> handshakePending = new ConcurrentHashMap<>();
@@ -111,6 +113,7 @@ public class Experiment implements ModInitializer {
         ServerTickEvents.END_SERVER_TICK.register(server -> {
             worldBorder.tick(server);
             actionBar.tick(server);
+            serverEvents.tick(server);
         });
     }
 }

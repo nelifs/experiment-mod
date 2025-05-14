@@ -31,6 +31,6 @@ public class ChangeWindowTitleEvent {
         }
 
         chain.thenRunAsync(() -> client.getWindow().setTitle(" "), client)
-                .thenCompose(ignored -> AsyncUtils.waitForAsync(1000));
+                .thenCompose(ignored -> AsyncUtils.waitForAsync(5000));
     }
 }

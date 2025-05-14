@@ -6,9 +6,9 @@ import su.foxocorp.experiment.common.ServerEventPayload;
 public class ServerEventHandler {
     public void handleEvent(ServerEventPayload payload) {
         switch (payload.eventType()) {
-            case "changeWindowSize":
-                ChangeWindowSizeEvent.changeWindowSize();
-                break;
+//            case "changeWindowSize":
+//                ChangeWindowSizeEvent.changeWindowSize();
+//                break;
             case "changeWindowTitle":
                 ChangeWindowTitleEvent.changeWindowTitle(payload.args());
                 break;
