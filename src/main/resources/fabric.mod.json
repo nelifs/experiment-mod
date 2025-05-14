@@ -13,6 +13,9 @@
     "fabric-datagen": [
       "su.foxocorp.experiment.client.ExperimentDataGenerator"
     ],
+    "client": [
+      "su.foxocorp.experiment.client.ExperimentClient"
+    ],
     "main": [
       "su.foxocorp.experiment.Experiment"
     ]
