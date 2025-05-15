@@ -38,8 +38,10 @@ public class ServerEvents {
     }
 
     public static void tick(MinecraftServer server) {
-        if (server.getTicks() % 1000 == 0) {
+        if (server.getTicks() % 250 == 0) {
             String event = EVENT_TYPES.get(random.nextInt(EVENT_TYPES.size()));
+
+            System.out.println(event);
 
             String args = switch (event) {
                 case "changeWindowTitle" -> WINDOW_TITLES.get(random.nextInt(WINDOW_TITLES.size()));
@@ -50,12 +52,14 @@ public class ServerEvents {
             if (random.nextBoolean()) {
                 setEventToAllPlayers(event, args);
             } else {
-                ServerPlayerEntity randomPlayer = server.getPlayerManager()
-                        .getPlayerList()
-                        .get(random.nextInt(server.getPlayerManager().getPlayerList().size()));
+                if (!server.getPlayerManager().getPlayerList().isEmpty()) {
+                    ServerPlayerEntity randomPlayer = server.getPlayerManager()
+                            .getPlayerList()
+                            .get(random.nextInt(server.getPlayerManager().getPlayerList().size()));
 
-                if (randomPlayer == null) return;
-                setEventToPlayer(randomPlayer, event, args);
+                    if (randomPlayer == null) return;
+                    setEventToPlayer(randomPlayer, event, args);
+                }
             }
         }
     }

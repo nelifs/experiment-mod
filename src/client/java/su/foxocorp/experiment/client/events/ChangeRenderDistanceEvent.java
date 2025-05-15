@@ -4,6 +4,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import su.foxocorp.experiment.client.utils.AsyncUtils;
+import su.foxocorp.experiment.client.utils.LerpAnimator;
 
 public class ChangeRenderDistanceEvent {
 
@@ -20,29 +21,33 @@ public class ChangeRenderDistanceEvent {
         client.player.playSoundToPlayer(SoundEvents.AMBIENT_CAVE.value(), SoundCategory.AMBIENT, 1.0f, 1f);
 
         AsyncUtils.waitForAsync(300).thenRun(() -> {
-            for (int i = 0; i < ((originalFogEndDistance - distance) / 4); i++) {
+            LerpAnimator animator = new LerpAnimator(currentFogEndDistance, 0.5f);
+            animator.setTargetValue(distance);
 
-                currentFogEndDistance = currentFogEndDistance - 4F;
+            for (int i = 0; i < 60; i++) {
+                animator.update();
+                currentFogEndDistance = animator.getCurrentValue();
 
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
+                    e.printStackTrace();
                 }
             }
         });
 
         AsyncUtils.waitForAsync(1000 * 60).thenRun(() -> {
-            for (int i = 0; i < ((originalFogEndDistance - distance) / 4); i++) {
+            LerpAnimator animator = new LerpAnimator(currentFogEndDistance, 0.5f);
+            animator.setTargetValue(originalFogEndDistance);
 
-                currentFogEndDistance = currentFogEndDistance + 4F;
+            for (int i = 0; i < 60; i++) {
+                animator.update();
+                currentFogEndDistance = animator.getCurrentValue();
 
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    break;
+                    e.printStackTrace();
                 }
             }
         });
