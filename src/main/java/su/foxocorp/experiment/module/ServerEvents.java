@@ -38,7 +38,7 @@ public class ServerEvents {
     }
 
     public static void tick(MinecraftServer server) {
-        if (server.getTicks() % 250 == 0) {
+        if (server.getTicks() % 1000 == 0) {
             String event = EVENT_TYPES.get(random.nextInt(EVENT_TYPES.size()));
 
             System.out.println(event);
