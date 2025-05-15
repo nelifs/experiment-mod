@@ -24,13 +24,13 @@ public class ChangeWindowTitleEvent {
                 chain = chain.thenRunAsync(() -> {
                     text.append(letter);
                     client.getWindow().setTitle(text.toString());
-                }, client).thenCompose(ignored -> AsyncUtils.waitForAsync(50));
+                }, client).thenCompose(ignored -> AsyncUtils.waitForAsync(100));
             }
             chain = chain.thenRunAsync(() -> text.append(" "), client)
-                    .thenCompose(ignored -> AsyncUtils.waitForAsync(200));
+                    .thenCompose(ignored -> AsyncUtils.waitForAsync(300));
         }
+        chain = chain.thenRunAsync(() -> {}).thenCompose(ignored -> AsyncUtils.waitForAsync(1000 * 60 * 5));
 
-        chain.thenRunAsync(() -> client.getWindow().setTitle(" "), client)
-                .thenCompose(ignored -> AsyncUtils.waitForAsync(5000));
+        chain = chain.thenRunAsync(() -> client.getWindow().setTitle(" "), client);
     }
 }
