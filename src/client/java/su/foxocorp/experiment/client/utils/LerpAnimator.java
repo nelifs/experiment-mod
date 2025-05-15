@@ -17,10 +17,6 @@ public class LerpAnimator {
         this.targetValue = targetValue;
     }
 
-    public float getCurrentValue() {
-        return currentValue;
-    }
-
     public void update() {
         float tolerance = 0.001F;
         if (Math.abs(currentValue - targetValue) <= tolerance) {
