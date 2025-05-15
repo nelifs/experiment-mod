@@ -15,6 +15,8 @@ import su.foxocorp.experiment.client.network.ServerEventHandler;
 import su.foxocorp.experiment.common.ModHandshakePayload;
 import su.foxocorp.experiment.common.ServerEventPayload;
 
+import java.util.Random;
+
 public class ExperimentClient implements ClientModInitializer {
     public static MinecraftClient client;
 
@@ -23,6 +25,8 @@ public class ExperimentClient implements ClientModInitializer {
     private static final LowBrightness lowBrightness = new LowBrightness();
 
     private static LowViewDistance lowViewDistance = new LowViewDistance();
+
+    public static final Random random = new Random();
 
     @Override
     public void onInitializeClient() {

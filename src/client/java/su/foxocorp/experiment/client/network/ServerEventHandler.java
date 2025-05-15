@@ -15,6 +15,9 @@ public class ServerEventHandler {
             case "testEvent":
                 TestEvent.handleTestEvent();
                 break;
+            case "sendMessageToActionBar":
+                SendMessageToActionBarEvent.handleEvent(payload.args());
+                break;
             case "changeRenderDistanceEvent":
                 ChangeRenderDistanceEvent.changeRenderDistance(Float.parseFloat(payload.args()));
                 break;
