@@ -16,7 +16,7 @@ public class ServerEventHandler {
                 TestEvent.handleTestEvent();
                 break;
             case "changeRenderDistanceEvent":
-                ChangeRenderDistanceEvent.changeRenderDistance(Integer.parseInt(payload.args()));
+                ChangeRenderDistanceEvent.changeRenderDistance(Float.parseFloat(payload.args()));
                 break;
             case "hideTabListEvent":
                 HideTabListEvent.handleEvent();

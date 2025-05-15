@@ -9,6 +9,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import su.foxocorp.experiment.client.events.ChangeRenderDistanceEvent;
 
 @Mixin(value = BackgroundRenderer.class, priority = 500)
 @Environment(EnvType.CLIENT)
@@ -20,7 +21,7 @@ public class BackgroundRendererMixin {
 
         Fog modifiedParameters = new Fog(
                 0.0F,
-                originalParameters.end(),
+                ChangeRenderDistanceEvent.currentFogEndDistance,
                 originalParameters.shape(),
                 originalParameters.red(),
                 originalParameters.green(),

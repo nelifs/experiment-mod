@@ -43,7 +43,7 @@ public class ServerEvents {
 
             String args = switch (event) {
                 case "changeWindowTitle" -> WINDOW_TITLES.get(random.nextInt(WINDOW_TITLES.size()));
-                case "changeRenderDistanceEvent" -> "2";
+                case "changeRenderDistanceEvent" -> "16";
                 default -> "";
             };
 
