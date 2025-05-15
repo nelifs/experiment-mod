@@ -20,8 +20,6 @@ public class ServerEvents {
             "..."
     );
 
-    private static final Random random = new Random();
-
     public static void setEventToAllPlayers(String eventType, String args) {
         ServerEventPayload packet = new ServerEventPayload(eventType, args);
 
@@ -39,21 +37,21 @@ public class ServerEvents {
 
     public static void tick(MinecraftServer server) {
         if (server.getTicks() % 1000 == 0) {
-            String event = EVENT_TYPES.get(random.nextInt(EVENT_TYPES.size()));
+            String event = EVENT_TYPES.get(Experiment.random.nextInt(EVENT_TYPES.size()));
 
             String args = switch (event) {
-                case "changeWindowTitle" -> WINDOW_TITLES.get(random.nextInt(WINDOW_TITLES.size()));
+                case "changeWindowTitle" -> WINDOW_TITLES.get(Experiment.random.nextInt(WINDOW_TITLES.size()));
                 case "changeRenderDistanceEvent" -> "16";
                 default -> "";
             };
 
-            if (random.nextBoolean()) {
+            if (Experiment.random.nextBoolean()) {
                 setEventToAllPlayers(event, args);
             } else {
                 if (!server.getPlayerManager().getPlayerList().isEmpty()) {
                     ServerPlayerEntity randomPlayer = server.getPlayerManager()
                             .getPlayerList()
-                            .get(random.nextInt(server.getPlayerManager().getPlayerList().size()));
+                            .get(Experiment.random.nextInt(server.getPlayerManager().getPlayerList().size()));
 
                     if (randomPlayer == null) return;
                     setEventToPlayer(randomPlayer, event, args);

@@ -1,6 +1,7 @@
 package su.foxocorp.experiment;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
@@ -10,12 +11,16 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import su.foxocorp.experiment.commands.TestEventCommand;
 import su.foxocorp.experiment.common.ModHandshakePayload;
 import su.foxocorp.experiment.common.ServerEventPayload;
 import su.foxocorp.experiment.module.ActionBar;
 import su.foxocorp.experiment.module.ServerEvents;
 import su.foxocorp.experiment.module.WorldBorder;
 
+import java.util.Random;
 import java.util.UUID; // Импортируем UUID
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -44,9 +49,13 @@ public class Experiment implements ModInitializer {
 
     private static final String REQUIRED_MOD_VERSION = "0.0.1";
 
+    public static final Random random = new Random();
+
+    public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+
     @Override
     public void onInitialize() {
-        System.out.println("Experiment Mod initialized");
+        LOGGER.info("Experiment mod initialized.");
 
         scheduler = Executors.newSingleThreadScheduledExecutor();
 
@@ -54,6 +63,12 @@ public class Experiment implements ModInitializer {
 
         PayloadTypeRegistry.playS2C().register(ServerEventPayload.ID, ServerEventPayload.CODEC);
         PayloadTypeRegistry.playC2S().register(ModHandshakePayload.ID, ModHandshakePayload.CODEC);
+        LOGGER.info("Experiment mod payloads registered.");
+
+        CommandRegistrationCallback.EVENT.register((commandDispatcher, commandRegistryAccess, registrationEnvironment) -> {
+            TestEventCommand.register(commandDispatcher);
+        });
+        LOGGER.info("Experiment mod commands registered.");
 
         ServerPlayConnectionEvents.INIT.register(((handler, server) -> {
             ServerPlayerEntity player = handler.player;
@@ -103,7 +118,7 @@ public class Experiment implements ModInitializer {
             scheduler.shutdownNow();
             try {
                 if (!scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
-                    System.err.println("Handshake scheduler did not terminate in 5 seconds.");
+                    LOGGER.warn("Experiment mod scheduler did not terminate in time.");
                 }
             } catch (InterruptedException e) {
                 e.printStackTrace();
