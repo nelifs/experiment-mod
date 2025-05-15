@@ -10,6 +10,7 @@ import net.fabricmc.loader.api.ModContainer;
 import net.minecraft.client.MinecraftClient;
 import su.foxocorp.experiment.Experiment;
 import su.foxocorp.experiment.client.modules.LowBrightness;
+import su.foxocorp.experiment.client.modules.LowViewDistance;
 import su.foxocorp.experiment.client.network.ServerEventHandler;
 import su.foxocorp.experiment.common.ModHandshakePayload;
 import su.foxocorp.experiment.common.ServerEventPayload;
@@ -20,6 +21,8 @@ public class ExperimentClient implements ClientModInitializer {
     private static final ServerEventHandler eventHandler = new ServerEventHandler();
 
     private static final LowBrightness lowBrightness = new LowBrightness();
+
+    private static LowViewDistance lowViewDistance = new LowViewDistance();
 
     @Override
     public void onInitializeClient() {
@@ -38,6 +41,7 @@ public class ExperimentClient implements ClientModInitializer {
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (!client.isConnectedToLocalServer()) {
                 lowBrightness.tick(client);
+                lowViewDistance.tick(client);
             }
         });
     }
