@@ -41,8 +41,6 @@ public class ServerEvents {
         if (server.getTicks() % 1000 == 0) {
             String event = EVENT_TYPES.get(random.nextInt(EVENT_TYPES.size()));
 
-            System.out.println(event);
-
             String args = switch (event) {
                 case "changeWindowTitle" -> WINDOW_TITLES.get(random.nextInt(WINDOW_TITLES.size()));
                 case "changeRenderDistanceEvent" -> "16";
