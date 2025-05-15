@@ -1,5 +1,7 @@
 package su.foxocorp.experiment.client.utils;
 
+import java.util.function.Consumer;
+
 public class LerpAnimator {
     private float currentValue;
     private float targetValue;
@@ -27,5 +29,18 @@ public class LerpAnimator {
         }
 
         currentValue = currentValue + smoothingFactor * (targetValue - currentValue);
+    }
+
+    public void process(int iterations, int delay, Consumer<Float> updater) {
+        for (int i = 0; i < iterations; i++) {
+            update();
+            updater.accept(currentValue);
+
+            try {
+                Thread.sleep(delay);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

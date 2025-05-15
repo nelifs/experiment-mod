@@ -12,6 +12,10 @@ public class ChangeRenderDistanceEvent {
 
     public static float currentFogEndDistance = 64F;
 
+    public static void setCurrentFogEndDistance(float distance) {
+        currentFogEndDistance = distance;
+    }
+
     public static void changeRenderDistance(float distance) {
         MinecraftClient client = MinecraftClient.getInstance();
 
@@ -24,32 +28,14 @@ public class ChangeRenderDistanceEvent {
             LerpAnimator animator = new LerpAnimator(currentFogEndDistance, 0.5f);
             animator.setTargetValue(distance);
 
-            for (int i = 0; i < 60; i++) {
-                animator.update();
-                currentFogEndDistance = animator.getCurrentValue();
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            animator.process(60, 100, ChangeRenderDistanceEvent::setCurrentFogEndDistance);
         });
 
         AsyncUtils.waitForAsync(1000 * 60).thenRun(() -> {
             LerpAnimator animator = new LerpAnimator(currentFogEndDistance, 0.5f);
             animator.setTargetValue(originalFogEndDistance);
 
-            for (int i = 0; i < 60; i++) {
-                animator.update();
-                currentFogEndDistance = animator.getCurrentValue();
-
-                try {
-                    Thread.sleep(100);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+            animator.process(60, 100, ChangeRenderDistanceEvent::setCurrentFogEndDistance);
         });
     }
 }
