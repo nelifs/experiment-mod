@@ -13,27 +13,19 @@ import java.util.Objects;
 
 public class TestEventCommand {
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
-        dispatcher.register(CommandManager.literal("testevent")
+        dispatcher.register(CommandManager.literal("testEvent")
                 .requires(serverCommandSource -> serverCommandSource.hasPermissionLevel(2))
                 .then(CommandManager.argument("event", StringArgumentType.string())
                         .then(CommandManager.argument("args", StringArgumentType.greedyString())
-                                .executes(context -> execute(context, StringArgumentType.getString(context, "event"), StringArgumentType.getString(context, "args"), false))
-                                .then(CommandManager.argument("allUsers", BoolArgumentType.bool())
-                                        .executes(context -> execute(context, StringArgumentType.getString(context, "event"), StringArgumentType.getString(context, "args"), BoolArgumentType.getBool(context, "allUsers")))
-                                )
+                                .executes(context -> execute(context, StringArgumentType.getString(context, "event"), StringArgumentType.getString(context, "args")))
                         ))
         );
     }
 
-    private static int execute(CommandContext<ServerCommandSource> context, String event, String args, boolean allUsers) {
+    private static int execute(CommandContext<ServerCommandSource> context, String event, String args) {
 
-        if (allUsers) {
-            ServerEvents.setEventToAllPlayers(event, args);
-            Objects.requireNonNull(context.getSource().getPlayer()).sendMessage(Text.of("Event " + event + " sent to all players"), false);
-        } else {
-            ServerEvents.setEventToPlayer(context.getSource().getPlayer(), event, args);
-            Objects.requireNonNull(context.getSource().getPlayer()).sendMessage(Text.of("Event " + event + " sent to player"), false);
-        }
+        ServerEvents.setEventToPlayer(context.getSource().getPlayer(), event, args);
+        Objects.requireNonNull(context.getSource().getPlayer()).sendMessage(Text.of("Event " + event + " sent to player"), false);
 
         return 1;
     }
