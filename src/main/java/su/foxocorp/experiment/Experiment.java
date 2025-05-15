@@ -13,6 +13,7 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import su.foxocorp.experiment.commands.ForceEventCommand;
 import su.foxocorp.experiment.commands.TestEventCommand;
 import su.foxocorp.experiment.common.ModHandshakePayload;
 import su.foxocorp.experiment.common.ServerEventPayload;
@@ -67,6 +68,7 @@ public class Experiment implements ModInitializer {
 
         CommandRegistrationCallback.EVENT.register((commandDispatcher, commandRegistryAccess, registrationEnvironment) -> {
             TestEventCommand.register(commandDispatcher);
+            ForceEventCommand.register(commandDispatcher);
         });
         LOGGER.info("Experiment mod commands registered.");
 
