@@ -6,7 +6,7 @@ public class HideTabListEvent {
 
     private static boolean hidePlayerList = false;
 
-    public static void handleEvent() {
+    public static void handle() {
         hidePlayerList = true;
 
         AsyncUtils.waitForAsync(1000 * 60 * 20).thenRun(() -> hidePlayerList = false);

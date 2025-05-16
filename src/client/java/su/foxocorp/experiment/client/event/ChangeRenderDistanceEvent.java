@@ -12,11 +12,11 @@ public class ChangeRenderDistanceEvent {
 
     public static float currentFogEndDistance = 64F;
 
-    public static void setCurrentFogEndDistance(float distance) {
+    private static void setCurrentFogEndDistance(float distance) {
         currentFogEndDistance = distance;
     }
 
-    public static void changeRenderDistance(float distance) {
+    public static void handle(float distance) {
         MinecraftClient client = MinecraftClient.getInstance();
 
         originalFogEndDistance = client.options.getViewDistance().getValue() * 16;

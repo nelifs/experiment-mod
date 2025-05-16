@@ -5,7 +5,7 @@ import su.foxocorp.experiment.client.ExperimentClient;
 
 public class TestEvent {
 
-    public static void handleTestEvent() {
+    public static void handle() {
         MinecraftClient client = ExperimentClient.client;
     }
 }

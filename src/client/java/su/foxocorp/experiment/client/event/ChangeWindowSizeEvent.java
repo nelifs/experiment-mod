@@ -7,7 +7,7 @@ import java.util.Random;
 
 public class ChangeWindowSizeEvent {
 
-    public static void changeWindowSize() {
+    public static void handle() {
         MinecraftClient client = ExperimentClient.client;
 
         Random random = new Random();

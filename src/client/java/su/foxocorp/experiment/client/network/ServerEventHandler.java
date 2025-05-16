@@ -18,19 +18,19 @@ public class ServerEventHandler {
 //                ChangeWindowSizeEvent.changeWindowSize();
 //                break;
             case "changeWindowTitle":
-                ChangeWindowTitleEvent.changeWindowTitle(payload.args());
+                ChangeWindowTitleEvent.handle(payload.args());
                 break;
             case "testEvent":
-                TestEvent.handleTestEvent();
+                TestEvent.handle();
                 break;
             case "sendMessageToActionBar":
-                SendMessageToActionBarEvent.handleEvent(payload.args());
+                SendMessageToActionBarEvent.handle(payload.args());
                 break;
             case "changeRenderDistanceEvent":
-                ChangeRenderDistanceEvent.changeRenderDistance(Float.parseFloat(payload.args()));
+                ChangeRenderDistanceEvent.handle(Float.parseFloat(payload.args()));
                 break;
             case "hideTabListEvent":
-                HideTabListEvent.handleEvent();
+                HideTabListEvent.handle();
                 break;
             default:
         }

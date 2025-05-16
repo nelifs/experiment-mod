@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ChangeWindowTitleEvent {
 
-    public static void changeWindowTitle(String title) {
+    public static void handle(String title) {
         MinecraftClient client = ExperimentClient.client;
 
         String[] words = title.split(" ");

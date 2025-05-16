@@ -8,7 +8,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class SendMessageToActionBarEvent {
 
-    public static void handleEvent(String message) {
+    public static void handle(String message) {
         MinecraftClient client = ExperimentClient.client;
 
         if (client != null && client.player != null) {
