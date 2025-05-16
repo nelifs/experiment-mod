@@ -11,6 +11,7 @@ import net.minecraft.client.MinecraftClient;
 import su.foxocorp.experiment.Experiment;
 import su.foxocorp.experiment.client.modules.LowBrightness;
 import su.foxocorp.experiment.client.modules.LowViewDistance;
+import su.foxocorp.experiment.client.modules.SingleplayWarning;
 import su.foxocorp.experiment.client.network.ServerEventHandler;
 import su.foxocorp.experiment.common.ModHandshakePayload;
 import su.foxocorp.experiment.common.ServerEventPayload;
@@ -31,6 +32,12 @@ public class ExperimentClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
         client = MinecraftClient.getInstance();
+
+        ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+            if (client.isInSingleplayer() || client.isConnectedToLocalServer()) {
+                SingleplayWarning.showWarning(client);
+            }
+        });
 
         ClientPlayNetworking.registerGlobalReceiver(ServerEventPayload.ID, (payload, context) -> {
             eventHandler.handleEvent(payload);
