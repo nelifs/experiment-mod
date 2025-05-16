@@ -3,6 +3,7 @@ package su.foxocorp.experiment.client.events;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
+import net.minecraft.text.Text;
 import su.foxocorp.experiment.client.utils.AsyncUtils;
 import su.foxocorp.experiment.client.utils.LerpAnimator;
 
@@ -20,6 +21,14 @@ public class ChangeRenderDistanceEvent {
         MinecraftClient client = MinecraftClient.getInstance();
 
         originalFogEndDistance = client.options.getViewDistance().getValue() * 16;
+
+        // im pretty sure that in a normal scenario, it won't cause any overlapping if it is without lerp animation but just in case
+        AsyncUtils.runThenWaitAsync(() -> {
+            LerpAnimator animator = new LerpAnimator(currentFogEndDistance, 0.5f);
+            animator.setTargetValue(originalFogEndDistance);
+
+            animator.process(60, 100, ChangeRenderDistanceEvent::setCurrentFogEndDistance);
+        }, 500);
 
         assert client.player != null;
         client.player.playSoundToPlayer(SoundEvents.AMBIENT_CAVE.value(), SoundCategory.AMBIENT, 1.0f, 1f);
