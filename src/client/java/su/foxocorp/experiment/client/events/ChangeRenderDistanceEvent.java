@@ -23,12 +23,14 @@ public class ChangeRenderDistanceEvent {
         originalFogEndDistance = client.options.getViewDistance().getValue() * 16;
 
         // im pretty sure that in a normal scenario, it won't cause any overlapping if it is without lerp animation but just in case
-        AsyncUtils.runThenWaitAsync(() -> {
-            LerpAnimator animator = new LerpAnimator(currentFogEndDistance, 0.5f);
-            animator.setTargetValue(originalFogEndDistance);
+        if (originalFogEndDistance != currentFogEndDistance) {
+            AsyncUtils.runThenWaitAsync(() -> {
+                LerpAnimator animator = new LerpAnimator(currentFogEndDistance, 0.5f);
+                animator.setTargetValue(originalFogEndDistance);
 
-            animator.process(60, 100, ChangeRenderDistanceEvent::setCurrentFogEndDistance);
-        }, 500);
+                animator.process(60, 100, ChangeRenderDistanceEvent::setCurrentFogEndDistance);
+            }, 500);
+        }
 
         assert client.player != null;
         client.player.playSoundToPlayer(SoundEvents.AMBIENT_CAVE.value(), SoundCategory.AMBIENT, 1.0f, 1f);
