@@ -29,7 +29,7 @@ public class ChangeRenderDistanceEvent {
                 animator.setTargetValue(originalFogEndDistance);
 
                 animator.process(60, 100, ChangeRenderDistanceEvent::setCurrentFogEndDistance);
-            }, 500);
+            }, 1000);
         }
 
         assert client.player != null;
