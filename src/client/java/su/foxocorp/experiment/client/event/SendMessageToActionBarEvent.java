@@ -1,4 +1,4 @@
-package su.foxocorp.experiment.client.events;
+package su.foxocorp.experiment.client.event;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;

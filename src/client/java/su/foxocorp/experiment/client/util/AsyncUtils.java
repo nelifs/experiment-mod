@@ -1,4 +1,4 @@
-package su.foxocorp.experiment.client.utils;
+package su.foxocorp.experiment.client.util;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;

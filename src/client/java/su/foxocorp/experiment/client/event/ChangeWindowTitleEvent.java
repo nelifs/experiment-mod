@@ -1,8 +1,8 @@
-package su.foxocorp.experiment.client.events;
+package su.foxocorp.experiment.client.event;
 
 import net.minecraft.client.MinecraftClient;
 import su.foxocorp.experiment.client.ExperimentClient;
-import su.foxocorp.experiment.client.utils.AsyncUtils;
+import su.foxocorp.experiment.client.util.AsyncUtils;
 
 import java.util.concurrent.CompletableFuture;
 

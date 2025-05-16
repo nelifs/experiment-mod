@@ -10,7 +10,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 import su.foxocorp.experiment.client.ExperimentClient;
-import su.foxocorp.experiment.client.events.ChangeRenderDistanceEvent;
+import su.foxocorp.experiment.client.event.ChangeRenderDistanceEvent;
 
 @Mixin(value = BackgroundRenderer.class, priority = 500)
 @Environment(EnvType.CLIENT)

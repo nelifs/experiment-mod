@@ -3,7 +3,7 @@ package su.foxocorp.experiment.client.network;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import su.foxocorp.experiment.Experiment;
-import su.foxocorp.experiment.client.events.*;
+import su.foxocorp.experiment.client.event.*;
 import su.foxocorp.experiment.common.ServerEventPayload;
 
 public class ServerEventHandler {

@@ -1,6 +1,6 @@
-package su.foxocorp.experiment.client.events;
+package su.foxocorp.experiment.client.event;
 
-import su.foxocorp.experiment.client.utils.AsyncUtils;
+import su.foxocorp.experiment.client.util.AsyncUtils;
 
 public class HideTabListEvent {
 

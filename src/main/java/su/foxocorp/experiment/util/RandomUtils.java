@@ -1,4 +1,4 @@
-package su.foxocorp.experiment.utils;
+package su.foxocorp.experiment.util;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;

@@ -1,10 +1,10 @@
-package su.foxocorp.experiment.client.events;
+package su.foxocorp.experiment.client.event;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import su.foxocorp.experiment.client.utils.AsyncUtils;
-import su.foxocorp.experiment.client.utils.LerpAnimator;
+import su.foxocorp.experiment.client.util.AsyncUtils;
+import su.foxocorp.experiment.client.util.LerpAnimator;
 
 public class ChangeRenderDistanceEvent {
 

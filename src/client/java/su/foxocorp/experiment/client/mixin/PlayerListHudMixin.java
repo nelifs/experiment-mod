@@ -8,7 +8,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
-import su.foxocorp.experiment.client.events.HideTabListEvent;
+import su.foxocorp.experiment.client.event.HideTabListEvent;
 
 @Mixin(PlayerListHud.class)
 public class PlayerListHudMixin {

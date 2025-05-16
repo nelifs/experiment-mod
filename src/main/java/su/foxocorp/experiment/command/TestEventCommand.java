@@ -1,4 +1,4 @@
-package su.foxocorp.experiment.commands;
+package su.foxocorp.experiment.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.StringArgumentType;

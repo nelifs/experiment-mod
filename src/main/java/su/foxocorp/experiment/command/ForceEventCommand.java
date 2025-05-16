@@ -1,4 +1,4 @@
-package su.foxocorp.experiment.commands;
+package su.foxocorp.experiment.command;
 
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.BoolArgumentType;
@@ -9,7 +9,7 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import su.foxocorp.experiment.module.ServerEvents;
-import su.foxocorp.experiment.utils.RandomUtils;
+import su.foxocorp.experiment.util.RandomUtils;
 
 import java.util.Objects;
 

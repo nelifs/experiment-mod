@@ -1,4 +1,4 @@
-package su.foxocorp.experiment.client.modules;
+package su.foxocorp.experiment.client.module;
 
 import net.minecraft.client.MinecraftClient;
 
