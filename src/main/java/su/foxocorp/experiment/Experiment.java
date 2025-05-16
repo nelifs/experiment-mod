@@ -73,6 +73,8 @@ public class Experiment implements ModInitializer {
         LOGGER.info("Experiment mod commands registered.");
 
         ServerPlayConnectionEvents.INIT.register(((handler, server) -> {
+            if (server.isSingleplayer()) return;
+
             ServerPlayerEntity player = handler.player;
             UUID playerUuid = player.getUuid();
 
@@ -111,12 +113,16 @@ public class Experiment implements ModInitializer {
         }));
 
         ServerPlayConnectionEvents.DISCONNECT.register(((handler, server) -> {
+            if (server.isSingleplayer()) return;
+
             ServerPlayerEntity player = handler.player;
             UUID playerUuid = player.getUuid();
             handshakePending.remove(playerUuid);
         }));
 
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
+            if (server.isSingleplayer()) return;
+
             scheduler.shutdownNow();
             try {
                 if (!scheduler.awaitTermination(5, TimeUnit.SECONDS)) {
@@ -128,6 +134,8 @@ public class Experiment implements ModInitializer {
         });
 
         ServerTickEvents.END_SERVER_TICK.register(server -> {
+            if (server.isSingleplayer()) return;
+
             worldBorder.tick(server);
             actionBar.tick(server);
             serverEvents.tick(server);
