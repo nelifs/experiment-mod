@@ -1,15 +1,13 @@
 package su.foxocorp.experiment.client.events;
 
 import net.minecraft.client.MinecraftClient;
-import net.minecraft.sound.SoundCategory;
-import net.minecraft.sound.SoundEvent;
-import net.minecraft.sound.SoundEvents;
 import su.foxocorp.experiment.client.ExperimentClient;
 import su.foxocorp.experiment.client.utils.AsyncUtils;
 
 import java.util.concurrent.CompletableFuture;
 
 public class ChangeWindowTitleEvent {
+
     public static void changeWindowTitle(String title) {
         MinecraftClient client = ExperimentClient.client;
 
@@ -31,6 +29,6 @@ public class ChangeWindowTitleEvent {
         }
         chain = chain.thenRunAsync(() -> {}).thenCompose(ignored -> AsyncUtils.waitForAsync(1000 * 60 * 5));
 
-        chain = chain.thenRunAsync(() -> client.getWindow().setTitle(" "), client);
+        chain.thenRunAsync(() -> client.getWindow().setTitle(" "), client);
     }
 }

@@ -4,10 +4,10 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.text.Text;
 import su.foxocorp.experiment.client.ExperimentClient;
 
-import java.util.Random;
 import java.util.concurrent.CompletableFuture;
 
 public class SendMessageToActionBarEvent {
+
     public static void handleEvent(String message) {
         MinecraftClient client = ExperimentClient.client;
 
@@ -16,7 +16,7 @@ public class SendMessageToActionBarEvent {
 
             for (int i = 0; i < message.length(); i++) {
                 if (message.charAt(i) != ' ') {
-                    scrambledText.append(message.charAt(ExperimentClient.random.nextInt(message.length() - 1)));
+                    scrambledText.append(message.charAt(ExperimentClient.RANDOM.nextInt(message.length() - 1)));
                 } else {
                     scrambledText.append(' ');
                 }

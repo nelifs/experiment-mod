@@ -6,6 +6,7 @@ import su.foxocorp.experiment.client.ExperimentClient;
 import java.util.Random;
 
 public class ChangeWindowSizeEvent {
+
     public static void changeWindowSize() {
         MinecraftClient client = ExperimentClient.client;
 

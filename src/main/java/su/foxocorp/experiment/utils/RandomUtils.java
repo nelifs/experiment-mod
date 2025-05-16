@@ -7,7 +7,8 @@ import su.foxocorp.experiment.Experiment;
 import java.util.Random;
 
 public class RandomUtils {
-    private static Random random = Experiment.random;
+
+    private static final Random RANDOM = Experiment.RANDOM;
 
     public static ServerPlayerEntity getRandomPlayer() {
         MinecraftServer server = Experiment.minecraftServer;
@@ -16,7 +17,7 @@ public class RandomUtils {
 
             return server.getPlayerManager()
                     .getPlayerList()
-                    .get(random.nextInt(server.getPlayerManager().getPlayerList().size()));
+                    .get(RANDOM.nextInt(server.getPlayerManager().getPlayerList().size()));
         }
         return null;
     }

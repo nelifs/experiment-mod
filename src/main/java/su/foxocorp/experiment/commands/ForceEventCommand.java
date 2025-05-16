@@ -14,6 +14,7 @@ import su.foxocorp.experiment.utils.RandomUtils;
 import java.util.Objects;
 
 public class ForceEventCommand {
+
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("forceEvent")
                 .requires(serverCommandSource -> serverCommandSource.hasPermissionLevel(2))

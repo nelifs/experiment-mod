@@ -4,6 +4,7 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.TimeUnit;
 
 public class AsyncUtils {
+
     public static CompletableFuture<Void> waitForAsync(long milliseconds) {
         return CompletableFuture.runAsync(() -> {
             try {
@@ -14,8 +15,8 @@ public class AsyncUtils {
         });
     }
 
-    public static CompletableFuture<Void> runThenWaitAsync(Runnable runnable, long milliseconds) {
-        return CompletableFuture.runAsync(() -> {
+    public static void runThenWaitAsync(Runnable runnable, long milliseconds) {
+        CompletableFuture.runAsync(() -> {
             runnable.run();
             try {
                 TimeUnit.MILLISECONDS.sleep(milliseconds);

@@ -3,8 +3,11 @@ package su.foxocorp.experiment.client.utils;
 import java.util.function.Consumer;
 
 public class LerpAnimator {
+
     private float currentValue;
+
     private float targetValue;
+
     private final float smoothingFactor;
 
     public LerpAnimator(float initialValue, float factor) {
@@ -35,6 +38,7 @@ public class LerpAnimator {
             try {
                 Thread.sleep(delay);
             } catch (InterruptedException e) {
+
                 e.printStackTrace();
             }
         }

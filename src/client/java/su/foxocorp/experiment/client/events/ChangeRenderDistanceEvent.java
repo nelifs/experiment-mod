@@ -3,7 +3,6 @@ package su.foxocorp.experiment.client.events;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
 import su.foxocorp.experiment.client.utils.AsyncUtils;
 import su.foxocorp.experiment.client.utils.LerpAnimator;
 

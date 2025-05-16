@@ -10,9 +10,6 @@
   "icon": "assets/experiment/icon.png",
   "environment": "*",
   "entrypoints": {
-    "fabric-datagen": [
-      "su.foxocorp.experiment.client.ExperimentDataGenerator"
-    ],
     "client": [
       "su.foxocorp.experiment.client.ExperimentClient"
     ],

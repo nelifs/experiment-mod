@@ -21,6 +21,7 @@ import su.foxocorp.experiment.module.ActionBar;
 import su.foxocorp.experiment.module.ServerEvents;
 import su.foxocorp.experiment.module.WorldBorder;
 
+import java.util.Arrays;
 import java.util.Random;
 import java.util.UUID; // Импортируем UUID
 import java.util.concurrent.ConcurrentHashMap;
@@ -30,6 +31,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Experiment implements ModInitializer {
+
     public static final String MOD_ID = "experiment";
 
     public static final Identifier ID = Identifier.of(MOD_ID, "server_event");
@@ -50,7 +52,7 @@ public class Experiment implements ModInitializer {
 
     private static final String REQUIRED_MOD_VERSION = "0.0.1";
 
-    public static final Random random = new Random();
+    public static final Random RANDOM = new Random();
 
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 
@@ -129,7 +131,7 @@ public class Experiment implements ModInitializer {
                     LOGGER.warn("Experiment mod scheduler did not terminate in time.");
                 }
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOGGER.error("Exception occurred during server shutdown:\n{}", Arrays.toString(e.getStackTrace()));
             }
         });
 

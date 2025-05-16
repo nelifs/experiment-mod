@@ -1,7 +1,6 @@
 package su.foxocorp.experiment.commands;
 
 import com.mojang.brigadier.CommandDispatcher;
-import com.mojang.brigadier.arguments.BoolArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.server.command.CommandManager;
@@ -12,6 +11,7 @@ import su.foxocorp.experiment.module.ServerEvents;
 import java.util.Objects;
 
 public class TestEventCommand {
+
     public static void register(CommandDispatcher<ServerCommandSource> dispatcher) {
         dispatcher.register(CommandManager.literal("testEvent")
                 .requires(serverCommandSource -> serverCommandSource.hasPermissionLevel(2))
