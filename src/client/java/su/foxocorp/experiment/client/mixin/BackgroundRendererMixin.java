@@ -9,11 +9,19 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
+import su.foxocorp.experiment.client.ExperimentClient;
 import su.foxocorp.experiment.client.events.ChangeRenderDistanceEvent;
 
 @Mixin(value = BackgroundRenderer.class, priority = 500)
 @Environment(EnvType.CLIENT)
 public class BackgroundRendererMixin {
+
+    @Inject(method = "toggleFog", at = @At("RETURN"), cancellable = true)
+    private static void onToggleFog(CallbackInfoReturnable<Boolean> cir) {
+        if (!ExperimentClient.client.isConnectedToLocalServer()) {
+            cir.setReturnValue(true);
+        }
+    }
 
     @Inject(method = "applyFog", at = @At("RETURN"), cancellable = true)
     private static void onApplyFog(net.minecraft.client.render.Camera camera, BackgroundRenderer.FogType fogType, Vector4f color, float viewDistance, boolean thickenFog, float tickProgress, CallbackInfoReturnable<Fog> cir) {
