@@ -4,7 +4,8 @@
   "package": "su.foxocorp.experiment.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ServerPlayerEntityMixin"
+    "ServerPlayerEntityMixin",
+    "invoker.TrapdoorBlockInvoker"
   ],
   "injectors": {
     "defaultRequire": 1

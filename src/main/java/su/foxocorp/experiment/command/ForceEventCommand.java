@@ -30,15 +30,18 @@ public class ForceEventCommand {
     }
 
     private static int execute(CommandContext<ServerCommandSource> context, String event, boolean allUsers, String args) {
+        ServerPlayerEntity contextPlayer = context.getSource().getPlayer();
 
         if (allUsers) {
-            ServerEvents.setEventToAllPlayers(event, args);
-            Objects.requireNonNull(context.getSource().getPlayer()).sendMessage(Text.of("Event " + event + " sent to all players"), false);
+            if (ServerEvents.isClientSide(event)) ServerEvents.sendClientEventToAllPlayers(event, args);
+            else ServerEvents.executeServerEventOnAllPlayers(event, args);
+            Objects.requireNonNull(contextPlayer).sendMessage(Text.of("Event " + event + " sent to all players"), false);
         } else {
             ServerPlayerEntity player = RandomUtils.getRandomPlayer();
             if (player != null) {
-                ServerEvents.setEventToPlayer(player, event, args);
-                Objects.requireNonNull(context.getSource().getPlayer()).sendMessage(Text.of("Event " + event + " sent to random player (" + player.getName() + ")"), false);
+                if (ServerEvents.isClientSide(event)) ServerEvents.sendClientEventToSpecificPlayer(player, event, args);
+                else ServerEvents.executeServerEventOnSpecificPlayer(player, event, args);
+                Objects.requireNonNull(contextPlayer).sendMessage(Text.of("Event " + event + " sent to random player (" + player.getName() + ")"), false);
             }
         }
 
