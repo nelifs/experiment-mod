@@ -55,10 +55,8 @@ public class ExperimentClient implements ClientModInitializer {
         });
 
         ClientTickEvents.END_CLIENT_TICK.register(client -> {
-            if (!client.isConnectedToLocalServer()) {
-                lowBrightness.tick(client);
-                lowViewDistance.tick(client);
-            }
+            lowBrightness.tick(client);
+            lowViewDistance.tick(client);
         });
     }
 

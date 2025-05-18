@@ -1,3 +1,3 @@
 {
-  "experiment.warning.singleplayer": "§6§lWARNING§r\nThis mod will §4§lNOT§r work in singleplayer or local servers playthroughs\nConsider setting up a server §lwith mod installed§r\n\n§c§lNOTE:§r At the moment, server-related events aren't translated and will be displayed §l§cONLY§r in Russian."
+  "experiment.warning.singleplayer": "§6§lWARNING§r\nThis mod may §4§lNOT§r work in singleplayer or local servers playthroughs\nConsider setting up a server §lwith mod installed§r\n\n§c§lNOTE:§r At the moment, server-related events aren't translated and will be displayed §l§cONLY§r in Russian."
 }

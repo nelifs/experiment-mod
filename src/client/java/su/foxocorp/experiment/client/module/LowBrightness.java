@@ -8,5 +8,7 @@ public class LowBrightness {
         if (!client.options.getGamma().getValue().equals(0.0)) {
             client.options.getGamma().setValue(0.0);
         }
+
+
     }
 }

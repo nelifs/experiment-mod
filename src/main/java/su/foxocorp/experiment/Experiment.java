@@ -7,10 +7,15 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.Blocks;
+import net.minecraft.block.DoorBlock;
+import net.minecraft.block.TrapdoorBlock;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import su.foxocorp.experiment.command.ForceEventCommand;
@@ -75,8 +80,6 @@ public class Experiment implements ModInitializer {
         LOGGER.info("Experiment mod commands registered.");
 
         ServerPlayConnectionEvents.INIT.register(((handler, server) -> {
-            if (server.isSingleplayer()) return;
-
             ServerPlayerEntity player = handler.player;
             UUID playerUuid = player.getUuid();
 
@@ -115,15 +118,13 @@ public class Experiment implements ModInitializer {
         }));
 
         ServerPlayConnectionEvents.DISCONNECT.register(((handler, server) -> {
-            if (server.isSingleplayer()) return;
-
             ServerPlayerEntity player = handler.player;
             UUID playerUuid = player.getUuid();
             handshakePending.remove(playerUuid);
         }));
 
         ServerLifecycleEvents.SERVER_STOPPING.register(server -> {
-            if (server.isSingleplayer()) return;
+            if (server.isDedicated()) return;
 
             scheduler.shutdownNow();
             try {
@@ -136,8 +137,6 @@ public class Experiment implements ModInitializer {
         });
 
         ServerTickEvents.END_SERVER_TICK.register(server -> {
-            if (server.isSingleplayer()) return;
-
             worldBorder.tick(server);
             actionBar.tick(server);
             serverEvents.tick(server);
