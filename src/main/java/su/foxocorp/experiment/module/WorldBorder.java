@@ -10,7 +10,7 @@ import net.minecraft.sound.SoundEvents;
 
 public class WorldBorder {
 
-    private static final double BORDER_SIZE = 1000.0;
+    private static final double BORDER_SIZE = 500.0;
 
     private int TICK_COUNTER = 0;
 
