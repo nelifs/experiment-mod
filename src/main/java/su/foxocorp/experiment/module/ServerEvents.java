@@ -1,11 +1,13 @@
 package su.foxocorp.experiment.module;
 
+import net.fabricmc.fabric.api.entity.FakePlayer;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import su.foxocorp.experiment.Experiment;
 import su.foxocorp.experiment.common.ServerEventPayload;
+import su.foxocorp.experiment.event.FakePlayerEvent;
 import su.foxocorp.experiment.event.PhantomBlocksInteractionsEvent;
 
 import java.util.HashMap;
@@ -13,6 +15,7 @@ import java.util.List;
 
 public class ServerEvents {
 
+    // name : isClientSide
     private static final HashMap<String, Boolean> EVENT_TYPES = new HashMap<>();
     static {
         EVENT_TYPES.put("phantomBlocksInteractions", false);
@@ -20,6 +23,8 @@ public class ServerEvents {
         EVENT_TYPES.put("changeRenderDistanceEvent", true);
         EVENT_TYPES.put("changeWindowTitle", true);
         EVENT_TYPES.put("sendMessageToActionBar", true);
+        EVENT_TYPES.put("testEvent", true);
+        EVENT_TYPES.put("fakePlayer", false);
     }
 
     public static boolean isClientSide(String eventType) {
@@ -42,6 +47,8 @@ public class ServerEvents {
 
     private static final PhantomBlocksInteractionsEvent phantomBlocksInteractionsEvent = new PhantomBlocksInteractionsEvent();
 
+    private static final FakePlayerEvent fakePlayerEvent = new FakePlayerEvent();
+
     public static void sendClientEventToAllPlayers(String eventType, String args) {
         ServerEventPayload packet = new ServerEventPayload(eventType, args);
 
@@ -62,6 +69,7 @@ public class ServerEvents {
             for (ServerPlayerEntity player : world.getPlayers()) {
                 switch (eventType) {
                     case "phantomBlocksInteractions": phantomBlocksInteractionsEvent.handle(player); break;
+                    case "fakePlayer": fakePlayerEvent.handle(player, args); break;
                 }
             }
         }
@@ -70,6 +78,7 @@ public class ServerEvents {
     public static void executeServerEventOnSpecificPlayer(ServerPlayerEntity player, String eventType, String args) {
         switch (eventType) {
             case "phantomBlocksInteractions": phantomBlocksInteractionsEvent.handle(player); break;
+            case "fakePlayer": fakePlayerEvent.handle(player, args); break;
         }
     }
 
